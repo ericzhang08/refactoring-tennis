@@ -15,6 +15,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     public void wonPoint(String playerName) {
+
         if (playerName.equals("player1"))
             m_score1 += 1;
         else
@@ -22,24 +23,44 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        if (m_score1 == m_score2) {
-            return getScoreWhenScoresEqual();
+        if (isEqualScore()) {
+            return displayEqualScore(m_score1);
         }
 
-
-        if (m_score1 >= 3 && m_score2 >= 3 && Math.abs(getMinusResult()) == 1) {
-            return getMinusResult() >0 ? "Advantage player1" :"Advantage player2" ;
+        if (isAdvantage()) {
+            return displayAdvantageScore();
 
         }
 
-        if (m_score1 >= 4 || m_score2 >= 4) {
-            String score1;
-            if (getMinusResult() >= 2) score1 = "Win for player1";
-            else score1 = "Win for player2";
-            return score1;
+        if (iswin()) {
+            return displayWinScore();
         }
+        return displayNormalScore();
+
+    }
+
+    private String displayNormalScore() {
         return transferScoreToString(m_score1) + "-" + transferScoreToString(m_score2);
+    }
 
+    private String displayWinScore() {
+        return getMinusResult() > 0 ? "Win for player1" : "Win for player2";
+    }
+
+    private String displayAdvantageScore() {
+        return getMinusResult() > 0 ? "Advantage player1" : "Advantage player2";
+    }
+
+    private boolean iswin() {
+        return (m_score1 >= 4 || m_score2 >= 4) && Math.abs(getMinusResult()) >= 2;
+    }
+
+    private boolean isAdvantage() {
+        return m_score1 >= 3 && m_score2 >= 3 && Math.abs(getMinusResult()) == 1;
+    }
+
+    private boolean isEqualScore() {
+        return m_score1 == m_score2;
     }
 
     private int getMinusResult() {
@@ -65,7 +86,7 @@ public class TennisGame1 implements TennisGame {
         return result;
     }
 
-    private String getScoreWhenScoresEqual() {
+    private String displayEqualScore(int m_score1) {
         String score;
         switch (m_score1) {
             case 0:
