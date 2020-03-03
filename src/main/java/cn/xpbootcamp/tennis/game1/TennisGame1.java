@@ -25,12 +25,16 @@ public class TennisGame1 implements TennisGame {
         if (m_score1 == m_score2) {
             return getScoreWhenScoresEqual();
         }
+
+
+        if (m_score1 >= 3 && m_score2 >= 3 && Math.abs(getMinusResult()) == 1) {
+            return getMinusResult() >0 ? "Advantage player1" :"Advantage player2" ;
+
+        }
+
         if (m_score1 >= 4 || m_score2 >= 4) {
             String score1;
-
-            if (getMinusResult() == 1) score1 = "Advantage player1";
-            else if (getMinusResult() == -1) score1 = "Advantage player2";
-            else if (getMinusResult() >= 2) score1 = "Win for player1";
+            if (getMinusResult() >= 2) score1 = "Win for player1";
             else score1 = "Win for player2";
             return score1;
         }
