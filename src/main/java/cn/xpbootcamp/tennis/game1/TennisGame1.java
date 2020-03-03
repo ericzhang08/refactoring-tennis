@@ -26,24 +26,18 @@ public class TennisGame1 implements TennisGame {
         if (m_score1 == m_score2) {
             return getScoreWhenScoresEqual();
         } else if (m_score1 >= 4 || m_score2 >= 4) {
-            return  getScoreWhenOneOfScoreBiggerThan4();
+            return getScoreWhenOneOfScoreBiggerThan4();
         } else {
             return getNormalScore();
         }
     }
 
     private String getNormalScore() {
-        String score = "";
-        for (int i = 1; i < 3; i++) {
-            if (i == 1) {
-                score += transferScoreToString(m_score1);
-            }
-            else {
-                score += "-";
-                score += transferScoreToString(m_score2);
-            }
-        }
-        return score;
+        String result = "";
+        result += transferScoreToString(m_score1);
+        result += "-";
+        result += transferScoreToString(m_score2);
+        return result;
     }
 
     private String transferScoreToString(int tempScore) {
