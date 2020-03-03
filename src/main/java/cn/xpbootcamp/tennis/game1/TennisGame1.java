@@ -36,15 +36,11 @@ public class TennisGame1 implements TennisGame {
         String score = "";
         for (int i = 1; i < 3; i++) {
             if (i == 1) {
-                int tempScore1 ;
-                tempScore1 = m_score1;
-                score += transferScoreToString(tempScore1);
+                score += transferScoreToString(m_score1);
             }
             else {
                 score += "-";
-                int tempScore;
-                tempScore = m_score2;
-                score += transferScoreToString(tempScore);
+                score += transferScoreToString(m_score2);
             }
         }
         return score;
