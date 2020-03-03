@@ -27,15 +27,19 @@ public class TennisGame1 implements TennisGame {
         }
         if (m_score1 >= 4 || m_score2 >= 4) {
             String score1;
-            int minusResult = m_score1 - m_score2;
-            if (minusResult == 1) score1 = "Advantage player1";
-            else if (minusResult == -1) score1 = "Advantage player2";
-            else if (minusResult >= 2) score1 = "Win for player1";
+
+            if (getMinusResult() == 1) score1 = "Advantage player1";
+            else if (getMinusResult() == -1) score1 = "Advantage player2";
+            else if (getMinusResult() >= 2) score1 = "Win for player1";
             else score1 = "Win for player2";
             return score1;
         }
         return transferScoreToString(m_score1) + "-" + transferScoreToString(m_score2);
 
+    }
+
+    private int getMinusResult() {
+        return m_score1 - m_score2;
     }
 
     private String transferScoreToString(int score) {
