@@ -33,11 +33,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String getNormalScore() {
-        String result = "";
-        result += transferScoreToString(m_score1);
-        result += "-";
-        result += transferScoreToString(m_score2);
-        return result;
+        return transferScoreToString(m_score1) + "-" + transferScoreToString(m_score2);
     }
 
     private String transferScoreToString(int tempScore) {
